@@ -1,1 +1,3 @@
-export * from './Input';
+export * from "./Icon";
+export * from "./Input";
+export * from "./TextLabel";
