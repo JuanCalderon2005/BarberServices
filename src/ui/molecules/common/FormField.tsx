@@ -29,10 +29,10 @@ export const FormField = <T extends FieldValues>({
   placeholder,
 }: IPropsFormField<T>) => {
   return (
-    <div className="w-full flex  flex-col mb-4">
+    <div className="w-full flex flex-col mb-6">
       <label
         htmlFor={id || label.toLowerCase()}
-        className={`text-sm font-medium`}
+        className={`text-sm font-medium text-gray-700 mb-1`}
       >
         {label}
       </label>
@@ -49,6 +49,7 @@ export const FormField = <T extends FieldValues>({
           />
         )}
       />
+      {error && <p className="mt-1 text-sm text-red-500">{error.message}</p>}
     </div>
   );
 };
