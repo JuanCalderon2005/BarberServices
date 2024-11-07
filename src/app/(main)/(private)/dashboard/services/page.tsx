@@ -1,5 +1,4 @@
-
-import { AuthService } from '@/app/infrastructure/services/auth.service';
+import { ServicesService } from '@/app/infrastructure/services/service.service';
 import { IGetServiceRequest } from '@/models/requestApi.models';
 import DataServices from '@/ui/template/DataServices';
 import React from 'react'
@@ -9,7 +8,7 @@ interface Props {
   searchParams: IGetServiceRequest
 }
 
-const useServices = new AuthService()
+const useServices = new ServicesService()
 
 export default async function ServicesPage({ searchParams }: Props) {
 
