@@ -81,12 +81,11 @@ const CreateServiceForm = ({ onClose }: IProps) => {
 
             <FormField<IRequestCreateService>
                 control={control}
-                type='price'
+                type='number'
                 name="price"
                 label="Precio"
                 error={errors.price}
                 placeholder='Precio del servicio'
-
             />
 
             <Button type='submit' label='Registrar' className="w-full bg-indigo-500 text-white py-2 rounded" />
