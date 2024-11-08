@@ -22,29 +22,32 @@ export default function TableComponent({ thead, tbody, onEdit, onDelete }: ITabl
           </tr>
         </thead>
         <tbody>
-          {tbody.map((row, rowIndex) => (
-            <tr key={rowIndex} className="hover:bg-gray-100 border-b border-gray-200">
-              {thead.map((header, cellIndex) => (
-                <td key={cellIndex} className="py-4 px-6 text-gray-700">
-                  {row[header]}
+          {tbody.map((row, rowIndex) => {
+            const id = row[thead[0]];
+            return (
+              <tr key={rowIndex} className="hover:bg-gray-100 border-b border-gray-200">
+                {thead.map((header, cellIndex) => (
+                  <td key={cellIndex} className="py-4 px-6 text-gray-700">
+                    {row[header]}
+                  </td>
+                ))}
+                <td className="py-4 px-6 text-center space-x-2 flex">
+                  <button
+                    className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-150"
+                    onClick={() => onEdit && onEdit(id)}
+                  >
+                    Editar
+                  </button>
+                  <button
+                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-150"
+                    onClick={() => onDelete && onDelete(id)}
+                  >
+                    Eliminar
+                  </button>
                 </td>
-              ))}
-              <td className="py-4 px-6 text-center space-x-2 flex">
-                <button
-                  className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-150"
-                  onClick={() => onEdit && onEdit(rowIndex)}
-                >
-                  Editar
-                </button>
-                <button
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-150"
-                  onClick={() => onDelete && onDelete(rowIndex)}
-                >
-                  Eliminar
-                </button>
-              </td>
-            </tr>
-          ))}
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

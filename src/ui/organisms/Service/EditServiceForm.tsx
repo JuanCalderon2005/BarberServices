@@ -20,9 +20,8 @@ const registerSchema = yup.object().shape({
 })
 
 const EditServiceForm = ({ onClose, serviceId }: IProps) => {
-
     const router = useRouter()
-    const [service, setService] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
     const {
         control,
         handleSubmit: onSubmit,
@@ -36,12 +35,13 @@ const EditServiceForm = ({ onClose, serviceId }: IProps) => {
     useEffect(() => {
         const fetchService = async () => {
             try {
-                const response = await fetch(`/api/services/getService/${serviceId}`)
+              
+                const response = await fetch(`/api/services/getservice/${serviceId}`)
                 if (!response.ok) {
                     throw new Error('Error al obtener el servicio')
                 }
                 const data = await response.json()
-                setService(data)
+                console.log(data)
                 setValue('name', data.name)
                 setValue('description', data.description)
                 setValue('price', data.price)

@@ -66,6 +66,7 @@ export class ServicesService implements PServices {
       const response = await this.clientHttp.get<IResponseDataServices>(
         `services/${id}`
       );
+      console.log(response);
       return response;
     } catch (error) {
       console.log(error);

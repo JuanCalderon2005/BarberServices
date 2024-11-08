@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Modal from '@/ui/atoms/Modal'
 import CreateServiceForm from '@/ui/organisms/Service/CreateServiceForm'
 import MainComponent from '@/ui/organisms/Main'
+import EditServiceForm from '@/ui/organisms/Service/EditServiceForm'
 
 interface DataServicesProps {
     pagination: Pageable
@@ -13,6 +14,8 @@ interface DataServicesProps {
 export default function DataServices({ pagination, data }: DataServicesProps) {
 
     const [ModalOpenEmp, setModalOpenEmp] = useState(false);
+    const [ModalOpenEdit, setModalOpenEdit] = useState(false);
+    const [SelectIdEdit, setSelectIdEdit] = useState<number>(1);
 
     const toggleModalEmp = () => {
         setModalOpenEmp(!ModalOpenEmp);
@@ -22,9 +25,15 @@ export default function DataServices({ pagination, data }: DataServicesProps) {
         toggleModalEmp();
     }
 
-    const handleEdit = () => {
-        console.log('edit')
+    const toggleModalEdit = () => {
+        setModalOpenEdit(!ModalOpenEdit);
     }
+
+    const handleEdit = (id: number) => {
+        setSelectIdEdit(id);
+        toggleModalEdit();
+    }
+
     const handleDelete = () => {
         console.log('delete')
     }
@@ -33,7 +42,10 @@ export default function DataServices({ pagination, data }: DataServicesProps) {
             <MainComponent onEdit={handleEdit} onDelete={handleDelete} pagination={pagination} data={data} nameButtonAdd='Agregar Servicio' handleAdd={handleAdd} />
             <Modal isOpen={ModalOpenEmp} onClose={toggleModalEmp} title='Agregar Servicio'>
                 <CreateServiceForm onClose={toggleModalEmp} />
+            </Modal>
 
+            <Modal isOpen={ModalOpenEdit} onClose={toggleModalEdit} title='Editar Servicio'>
+                <EditServiceForm onClose={toggleModalEdit} serviceId={SelectIdEdit} />
             </Modal>
         </div>
     )
