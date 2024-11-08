@@ -64,15 +64,14 @@ export class HttpClient {
   }
 
   private async getHeader() {
-    const sesion = await getServerSession(authOptions) as session;
-    const token = sesion.user.token as string;
+    const sesion = (await getServerSession(authOptions)) as session | null;
 
     const headers: HeadersInit = {
       "Content-Type": "application/json",
     };
 
-    if (token) {
-      headers["Authorization"] = `Bearer ${token}`;
+    if (sesion?.user?.token) {
+      headers["Authorization"] = `Bearer ${sesion.user.token}`;
     }
 
     console.log(headers);
