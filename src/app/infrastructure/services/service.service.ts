@@ -4,6 +4,10 @@ import { HttpClient } from "../utils";
 import { PServices } from "@/app/core/application/ports/service.port";
 import { IRequestCreateService } from "@/app/core/application/dto/services/createService-request.dto";
 import { IResponseCreateService } from "@/app/core/application/dto/services/createService-response.dto";
+import {
+  IRequestEditService,
+  IResponseEditService,
+} from "@/app/core/application/dto";
 
 export class ServicesService implements PServices {
   private clientHttp: HttpClient;
@@ -35,6 +39,34 @@ export class ServicesService implements PServices {
         IRequestCreateService
       >("services", Service);
       return createService;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async UpdateService(
+    id: number,
+    service: IRequestEditService
+  ): Promise<IResponseEditService> {
+    try {
+      const updateService = await this.clientHttp.put<
+        IResponseEditService,
+        IRequestEditService
+      >(`services/${id}`, service);
+      return updateService;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async GetServiceById(id: number): Promise<IResponseDataServices> {
+    try {
+      const response = await this.clientHttp.get<IResponseDataServices>(
+        `services/${id}`
+      );
+      return response;
     } catch (error) {
       console.log(error);
       throw error;
