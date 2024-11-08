@@ -49,7 +49,6 @@ export const FormField = <T extends FieldValues>({
           />
         )}
       />
-      {error && <p className="mt-1 text-sm text-red-500">{error.message}</p>}
     </div>
   );
 };
