@@ -1,6 +1,6 @@
 import { ServicesService } from '@/app/infrastructure/services/service.service';
 import { IGetServiceRequest } from '@/models/requestApi.models';
-import DataServices from '@/ui/template/DataServices';
+import DataServices from '@/ui/template/Service/DataServices';
 import React from 'react'
 
 
@@ -14,7 +14,7 @@ export default async function ServicesPage({ searchParams }: Props) {
 
   const page = searchParams.page ? parseInt(searchParams.page.toString()) : 1
 
-  const response = await useServices.AllServices({ page, size: 10 })
+  const response = await useServices.GetAllServices({ page, size: 10 })
 
 
   return (
