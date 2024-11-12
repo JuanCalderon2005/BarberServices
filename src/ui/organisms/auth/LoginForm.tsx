@@ -107,10 +107,6 @@ export const LoginForm = () => {
         >
           Iniciar Sesión
         </button>
-
-        <p className="mt-4 text-center text-gray-600">
-          ¿No tienes una cuenta? <a href="/register" className="text-indigo-600 hover:underline">Regístrate</a>
-        </p>
       </form>
     </div>
   );

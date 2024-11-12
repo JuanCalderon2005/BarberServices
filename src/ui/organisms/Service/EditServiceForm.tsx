@@ -103,7 +103,7 @@ const EditServiceForm = ({ onClose, serviceId }: IProps) => {
                 placeholder='Precio del servicio'
             />
 
-            <Button type='submit' label='Registrar' className="w-full bg-indigo-500 text-white py-2 rounded" />
+            <Button type='submit' label='Editar' className="w-full bg-indigo-500 text-white py-2 rounded" />
         </form>
     )
 }

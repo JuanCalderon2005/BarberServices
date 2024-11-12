@@ -73,4 +73,13 @@ export class ServicesService implements PServices {
       throw error;
     }
   }
+
+  async DeleteService(id: number): Promise<void> {
+    try {
+      await this.clientHttp.delete(`services/${id}`);
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }

@@ -27,7 +27,18 @@ export interface PServices {
    * */
   UpdateService(id:number,service: IRequestEditService): Promise<IResponseEditService>
 
+  /**
+   * @param {number}-service id
+   * @param {IRequestAllServices}-service request
+   * @returns {Promise<IResponseDataServices>}-service response
+   * */
 
   GetServiceById(id:number, req: IRequestAllServices): Promise<IResponseDataServices>;
+
+  /**
+   * @param {number}-service id
+   * @returns {Promise<void>}
+   * */
+  DeleteService(id:number): Promise<void>
 
 }

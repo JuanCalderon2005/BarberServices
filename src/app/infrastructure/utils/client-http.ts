@@ -75,7 +75,6 @@ export class HttpClient {
     }
 
     console.log(headers);
-
     return headers;
   }
 
