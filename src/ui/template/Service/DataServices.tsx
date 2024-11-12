@@ -5,6 +5,7 @@ import Modal from '@/ui/atoms/Modal'
 import CreateServiceForm from '@/ui/organisms/Service/CreateServiceForm'
 import MainComponent from '@/ui/organisms/Main'
 import EditServiceForm from '@/ui/organisms/Service/EditServiceForm'
+import { useRouter } from 'next/navigation'
 
 interface DataServicesProps {
     pagination: Pageable
@@ -12,6 +13,8 @@ interface DataServicesProps {
 }
 
 export default function DataServices({ pagination, data }: DataServicesProps) {
+
+    const router = useRouter();
 
     const [ModalOpenEmp, setModalOpenEmp] = useState(false);
     const [ModalOpenEdit, setModalOpenEdit] = useState(false);
@@ -34,12 +37,27 @@ export default function DataServices({ pagination, data }: DataServicesProps) {
         toggleModalEdit();
     }
 
-    const handleDelete = () => {
-        console.log('delete')
-    }
+    const handleDelete = async (id: number) => {
+        try {
+            const response = await fetch(`/api/services/delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            alert("Servicio eliminado exitosamente");
+            router.refresh();
+            return await response.json();
+
+        } catch (error) {
+            console.error("Error en el DELETE:", error);
+            throw error;
+        }
+    };
     return (
         <div className="">
-            <MainComponent onEdit={handleEdit} onDelete={handleDelete} pagination={pagination} data={data} nameButtonAdd='Agregar Servicio' handleAdd={handleAdd} />
+            <MainComponent onEdit={handleEdit} onDelete={(id) => handleDelete(id)} pagination={pagination} data={data} nameButtonAdd='Agregar Servicio' handleAdd={handleAdd} />
             <Modal isOpen={ModalOpenEmp} onClose={toggleModalEmp} title='Agregar Servicio'>
                 <CreateServiceForm onClose={toggleModalEmp} />
             </Modal>

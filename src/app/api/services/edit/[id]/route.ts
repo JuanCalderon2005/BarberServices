@@ -13,5 +13,8 @@ export async function PUT(
     const response = await useEditService.UpdateService(id, body);
 
     return NextResponse.json(response, { status: 200 });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({ message: "Error" }, { status: 500 });
+  }
 }
